@@ -1,0 +1,5 @@
+streamlit
+openai
+llama-parse
+python-dotenv
+nest_asyncio
