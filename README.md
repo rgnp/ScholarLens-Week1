@@ -39,3 +39,6 @@ ScholarLens is an AI-powered tool designed to help researchers quickly understan
    streamlit run app.py
    ```
 
+## 📸 Demo
+
+![App Screenshot](assets/demo.jpg)
