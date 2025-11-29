@@ -18,12 +18,12 @@ ScholarLens is an AI-powered tool designed to help researchers quickly understan
 ## 📦 How to Run
 
 1. **Clone the repo**
-   ```bash
+   ```
    git clone [https://github.com/你的用户名/ScholarLens.git](https://github.com/你的用户名/ScholarLens.git)
    cd ScholarLens
 
 2. **Install dependencies**
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
@@ -35,7 +35,7 @@ ScholarLens is an AI-powered tool designed to help researchers quickly understan
    ```
 
 4. **Run the app**
-   ```bash
+   ```
    streamlit run app.py
    ```
 

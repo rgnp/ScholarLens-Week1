@@ -23,7 +23,6 @@ def parse_pdf(file_path):
     """
     print(f"[Log] 正在调用 LlamaParse 解析: {file_path}...")
     
-    # 初始化解析器
     parser = LlamaParse(
         api_key=get_api_key("LLAMA_CLOUD_API_KEY"),
         result_type="markdown", 
@@ -31,17 +30,21 @@ def parse_pdf(file_path):
         language="en", 
     )
     
-    # 获取文档列表
+    # 获取文档列表 (这里可能包含多个 Document 对象，例如一页一个)
     documents = parser.load_data(file_path)
     
-    # --- 修复点：增加空值检查 ---
     if not documents:
-        # 如果列表是空的，手动抛出一个错误，而不是让程序崩溃
-        raise ValueError("LlamaParse 解析失败，返回了空结果。请检查：1. API Key 是否正确？2. PDF 是否加密或为空？")
-        
-    # 如果代码走到这里，说明 documents 里有东西
-    print(f"[Log] 解析成功，提取了 {len(documents[0].text)} 个字符。")
-    return documents[0].text
+        raise ValueError("LlamaParse 解析失败，返回了空结果。")
+    
+    # --- 🔥 核心修复开始 ---
+    # 旧代码：return documents[0].text  <-- 只取了第一页
+    
+    # 新代码：使用列表推导式，把所有页面的 text 提取出来，用换行符拼在一起
+    full_text = "\n\n".join([doc.text for doc in documents])
+    # --- 核心修复结束 ---
+
+    print(f"[Log] 解析成功，共提取了 {len(full_text)} 个字符。")
+    return full_text
 
 def chat_with_ai(context, question):
     """
